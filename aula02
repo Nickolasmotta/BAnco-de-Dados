@@ -1,4 +1,3 @@
-
 create DataBase Imobiliária
 go
 use Imobiliária 
@@ -10,9 +9,9 @@ cd_Vendedor int not null,
 cd_Bairro int not null,
 cd_Cidade int not null,
 sg_Estado char (02),
-ds_Endereço varchar (40), 
-qt_AreaUtil decimal (10,2), 
-qt_AreaTotal decimal (10,2)
+ds_Endereço varchar(40), 
+qt_AreaUtil decimal(10, 2), 
+qt_AreaTotal decimal(10, 2)
 ds_Imovel varchar(300)
 vl_Imovel money 
 qt_Oferta int 
@@ -56,7 +55,7 @@ go
 Create table Vendedor 
 cd_Vendedor int 
 nm_Vendedor Varchar(40)
-ds_Endereco Varchar (40)
+ds_Endereco Varchar(40)
 cd_CPF varchar(15)
 nm_Cidade Varchar(40)
 nm_Bairro Varchar(40)
@@ -69,7 +68,7 @@ Create table Comprador
 cd_Comprador int
 nm_Comprador Varchar(40)
 ds_Endereco Varchar(40)
-cd_CPF  Varchar(20)
+cd_CPF Varchar(20)
 nm_Cidade Varchar(40)
 nm_Bairro Varchar(40)
 sg_estado Char(02)
@@ -94,7 +93,7 @@ Add Primary Key (cd_Comprador)
 go
 
 Alter table Bairro 
-Add Primary Key (cd_Bairro,cd_Cidadão,sg_Estado)
+Add Primary Key (cd_Bairro, cd_Cidadão, sg_Estado)
 go
 
 Alter table Faixa_Imovel
@@ -102,6 +101,21 @@ Add Primary key (cd_Faixa)
 go
 
 Alter table Imovel 
-Add Foreign Key (cd_Bairro,cd_Cidade,sg_Estado)
-References Bairro  
+Add Foreign Key (cd_Bairro, cd_Cidade, sg_Estado)
+References Bairro
 
+    Alter table Imovel 
+    Add Foreign Key (cd_Comprador) 
+    References Comprador 
+
+    Alter table Bairro 
+    Add Foreign Key (cd_Cidade, sg_Estado)
+    References Cidade 
+
+    Alter table Cidade 
+    Add Foreign KEy (sg_Estado)
+    References Estado
+
+    Alter table Oferta 
+    Add foreign Key (cd_Imovel)
+    References Imovel 
